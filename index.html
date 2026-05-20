@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo List</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <span class="brand-logo center nav-title">
+        <i class="material-icons">check_circle</i>
+        Todo List
+      </span>
+      <ul id="nav-user" class="right hide">
+        <li><span id="nav-email" class="nav-email"></span></li>
+        <li>
+          <a href="#" id="logout-btn" title="로그아웃">
+            <i class="material-icons">logout</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" style="display:none">
+    <div class="card input-card z-depth-2">
+      <div class="card-content">
+        <div class="row no-margin">
+          <div class="input-field col s12 m7">
+            <i class="material-icons prefix">edit</i>
+            <input type="text" id="todo-input">
+            <label for="todo-input">할 일을 입력하세요</label>
+          </div>
+          <div class="input-field col s8 m3">
+            <select id="priority-select">
+              <option value="high">높음</option>
+              <option value="medium" selected>중간</option>
+              <option value="low">낮음</option>
+            </select>
+            <label>우선순위</label>
+          </div>
+          <div class="col s4 m2 add-col">
+            <button id="add-btn" class="btn waves-effect waves-light btn-add">
+              <i class="material-icons">add</i>
+              <span class="btn-label">추가</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="todo-list"></div>
+  </main>
+
+  <!-- Auth Overlay -->
+  <div id="auth-overlay">
+    <div class="auth-card card z-depth-3">
+      <div class="auth-tabs">
+        <button id="tab-login" class="auth-tab active">로그인</button>
+        <button id="tab-signup" class="auth-tab">회원가입</button>
+      </div>
+      <div class="card-content">
+        <div class="input-field">
+          <i class="material-icons prefix">email</i>
+          <input type="email" id="auth-email" autocomplete="email">
+          <label for="auth-email">이메일</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <input type="password" id="auth-password" autocomplete="current-password">
+          <label for="auth-password">비밀번호</label>
+        </div>
+        <p id="auth-message" class="auth-message hide"></p>
+        <div class="auth-actions">
+          <button id="auth-submit-btn" class="btn waves-effect waves-light auth-btn">
+            로그인
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Materialize script 위에 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl  = 'https://lfzqsyyqxxmmmnicvxlp.supabase.co'; // Project URL
+  const supabaseKey  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmenFzeXlxeHhtbW1uaWN2eGxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMDQ3NDUsImV4cCI6MjA5NDc4MDc0NX0.nzfyHnAA2TU_GO3by_twFTjhGfPdANvr_ohpuN3xBhc';                            // anon public key
+  const db = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="script.js"></script>
+  
+</body>
+</html>

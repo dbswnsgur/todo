@@ -1,0 +1,416 @@
+/* ===== Base ===== */
+body {
+  background-color: #fce4ec;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Nav ===== */
+nav {
+  background-color: #e91e63;
+  box-shadow: 0 2px 8px rgba(233, 30, 99, 0.4);
+}
+
+.nav-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.nav-title .material-icons {
+  vertical-align: middle;
+  margin-right: 6px;
+  font-size: 1.5rem;
+}
+
+/* ===== Container ===== */
+main.container {
+  padding-top: 28px;
+  padding-bottom: 48px;
+}
+
+/* ===== Input Card ===== */
+.input-card {
+  border-radius: 12px !important;
+}
+
+.no-margin {
+  margin-bottom: 0 !important;
+}
+
+/* Materialize input 포커스 색상 → 핑크 */
+.input-field input:focus {
+  border-bottom-color: #e91e63 !important;
+  box-shadow: 0 1px 0 0 #e91e63 !important;
+}
+
+.input-field input:focus + label,
+.input-field label.active {
+  color: #e91e63 !important;
+}
+
+.input-field .prefix.active {
+  color: #e91e63 !important;
+}
+
+.input-field .select-wrapper input.select-dropdown:focus {
+  border-bottom-color: #e91e63 !important;
+}
+
+/* Materialize 체크박스 색상 → 핑크 */
+[type="checkbox"]:checked + span:not(.lever)::before {
+  border-right-color: #e91e63 !important;
+  border-bottom-color: #e91e63 !important;
+}
+
+/* 추가 버튼 열 */
+.add-col {
+  display: flex;
+  align-items: center;
+  padding-top: 18px;
+}
+
+.btn-add {
+  background-color: #e91e63 !important;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.btn-add:hover, .btn-add:focus {
+  background-color: #c2185b !important;
+}
+
+/* ===== Todo List ===== */
+#todo-list {
+  margin-top: 8px;
+}
+
+/* ===== Priority Group Cards ===== */
+.priority-group {
+  border-radius: 12px !important;
+  margin-bottom: 16px;
+}
+
+.priority-group .card-content {
+  padding: 16px 20px;
+}
+
+/* ===== Group Header ===== */
+.group-header {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.group-header-high   { background: #ffcdd2; color: #b71c1c; }
+.group-header-medium { background: #ffe0b2; color: #bf360c; }
+.group-header-low    { background: #c8e6c9; color: #1b5e20; }
+
+/* ===== Group List (Collection) ===== */
+.group-list {
+  border: 2px dashed transparent !important;
+  border-radius: 8px !important;
+  min-height: 52px;
+  margin: 0 !important;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.group-list.drag-over {
+  border-color: #e91e63 !important;
+  background: #fce4ec !important;
+}
+
+/* ===== Todo Items ===== */
+.todo-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 10px 16px !important;
+  border-bottom: 1px solid #f8bbd0 !important;
+  border-left: 4px solid transparent !important;
+  border-radius: 6px !important;
+  background: #ffffff;
+  transition: background 0.15s;
+}
+
+.todo-item:last-child {
+  border-bottom: none !important;
+}
+
+.todo-item:hover {
+  background: #fce4ec;
+}
+
+.todo-item.priority-high   { border-left-color: #ef5350 !important; }
+.todo-item.priority-medium { border-left-color: #ffa726 !important; }
+.todo-item.priority-low    { border-left-color: #66bb6a !important; }
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: #9e9e9e;
+}
+
+.todo-item.dragging {
+  opacity: 0.35;
+}
+
+.todo-item.drop-indicator-before {
+  border-top: 2px solid #e91e63 !important;
+}
+
+.todo-item.drop-indicator-after {
+  border-bottom: 2px solid #e91e63 !important;
+}
+
+/* ===== Drag Handle ===== */
+.drag-handle {
+  cursor: grab;
+  color: #bdbdbd;
+  user-select: none;
+  flex-shrink: 0;
+  font-size: 1.3rem;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* ===== Checkbox Label ===== */
+.todo-item > label {
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ===== Todo Text ===== */
+.todo-text {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #424242;
+  word-break: break-word;
+}
+
+/* ===== Priority Chip ===== */
+.priority-chip {
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  height: 24px !important;
+  line-height: 24px !important;
+  padding: 0 10px !important;
+  white-space: nowrap;
+  user-select: none;
+  margin: 0 !important;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.priority-chip:hover  { opacity: 0.8; }
+.priority-chip:active { transform: scale(0.93); }
+
+.priority-chip-high   { background-color: #ffcdd2 !important; color: #b71c1c !important; }
+.priority-chip-medium { background-color: #ffe0b2 !important; color: #bf360c !important; }
+.priority-chip-low    { background-color: #c8e6c9 !important; color: #1b5e20 !important; }
+
+/* ===== Priority Dropdown ===== */
+.priority-dropdown {
+  position: fixed;
+  z-index: 500;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  min-width: 80px;
+}
+
+.priority-dropdown-item {
+  padding: 9px 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.12s;
+}
+
+.priority-dropdown-item:hover {
+  filter: brightness(0.92);
+}
+
+.priority-dropdown-item.current {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.priority-dropdown-item.current:hover {
+  filter: none;
+}
+
+/* ===== Delete Button ===== */
+.delete-btn {
+  float: none !important;
+  position: static !important;
+  display: flex !important;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.delete-btn i {
+  color: #e91e63;
+  font-size: 1.3rem;
+  transition: color 0.15s;
+}
+
+.delete-btn:hover i {
+  color: #c2185b;
+}
+
+/* ===== Nav User Info ===== */
+.nav-email {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 64px;
+  padding: 0 8px;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#nav-user a {
+  padding: 0 10px;
+}
+
+#nav-user .material-icons {
+  font-size: 1.3rem;
+}
+
+/* ===== Auth Overlay ===== */
+#auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(252, 228, 236, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 16px;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.auth-tabs {
+  display: flex;
+  background: #f8bbd0;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #880e4f;
+  transition: background 0.15s;
+}
+
+.auth-tab.active {
+  background: #ffffff;
+  color: #e91e63;
+  font-weight: 700;
+}
+
+.auth-tab:hover:not(.active) {
+  background: #f48fb1;
+}
+
+.auth-message {
+  font-size: 0.85rem;
+  margin: 4px 0 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.auth-message.error {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.auth-message.info {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.auth-message.hide {
+  display: none;
+}
+
+.auth-actions {
+  margin-top: 4px;
+}
+
+.auth-btn {
+  background-color: #e91e63 !important;
+  width: 100%;
+  border-radius: 8px !important;
+  margin-top: 4px;
+}
+
+.auth-btn:hover {
+  background-color: #c2185b !important;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 600px) {
+  main.container {
+    width: 95%;
+    padding-top: 16px;
+  }
+
+  .priority-group .card-content {
+    padding: 12px 14px;
+  }
+
+  .todo-item {
+    gap: 7px !important;
+    padding: 10px 10px !important;
+  }
+
+  .todo-text {
+    font-size: 0.88rem;
+  }
+
+  .priority-chip {
+    font-size: 0.62rem !important;
+    padding: 0 7px !important;
+  }
+
+  .drag-handle {
+    font-size: 1.1rem;
+  }
+
+  .btn-label {
+    display: none;
+  }
+
+  .btn-add {
+    min-width: unset;
+    padding: 0 12px;
+  }
+}
