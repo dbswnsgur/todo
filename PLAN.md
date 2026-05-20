@@ -22,11 +22,16 @@ Google / GitHub OAuth 로그인을 기존 Supabase Auth에 연동합니다.
 2. 프로젝트 생성 또는 기존 프로젝트 선택
 3. **APIs & Services → Credentials → Create Credentials → OAuth 2.0 Client ID**
 4. Application type: `Web application`
-5. **Authorized redirect URIs** 에 아래 URL 추가:
+5. **Authorized JavaScript origins** 에 아래 URL 추가:
+   ```
+   http://localhost:8765
+   https://dbswnsgur.github.io
+   ```
+6. **Authorized redirect URIs** 에 아래 URL 추가 (Supabase 콜백, URL별 별도 설정 불필요):
    ```
    https://lfzqsyyqxxmmmnicvxlp.supabase.co/auth/v1/callback
    ```
-6. 생성 후 **Client ID**, **Client Secret** 복사
+7. 생성 후 **Client ID**, **Client Secret** 복사
 
 ---
 
@@ -35,12 +40,14 @@ Google / GitHub OAuth 로그인을 기존 Supabase Auth에 연동합니다.
 1. GitHub → **Settings → Developer settings → OAuth Apps → New OAuth App**
 2. 입력값:
    - Application name: `Todo App` (자유)
-   - Homepage URL: `http://localhost:8765`
-   - **Authorization callback URL**:
+   - Homepage URL: `https://dbswnsgur.github.io/todo/`
+   - **Authorization callback URL** (Supabase 콜백, URL별 별도 설정 불필요):
      ```
      https://lfzqsyyqxxmmmnicvxlp.supabase.co/auth/v1/callback
      ```
 3. 생성 후 **Client ID**, **Client Secret** 복사
+
+> **참고**: Client ID / Secret은 OAuth 앱 하나에 하나입니다. 로컬·운영 환경 구분 없이 동일한 값을 사용합니다.
 
 ---
 
@@ -55,12 +62,12 @@ Google / GitHub OAuth 로그인을 기존 Supabase Auth에 연동합니다.
 
 **Authentication → URL Configuration**
 
-- **Site URL**: `http://localhost:8765`
-- **Redirect URLs** 에 추가:
+- **Site URL**: `https://dbswnsgur.github.io/todo/` (운영 기준)
+- **Redirect URLs** 에 두 주소 모두 추가 (Enter로 각각 등록):
   ```
+  https://dbswnsgur.github.io/todo/
   http://localhost:8765/index.html
   ```
-  > 배포 후에는 운영 URL도 추가 필요
 
 ---
 
@@ -140,4 +147,5 @@ document.getElementById('github-btn').addEventListener('click', () => {
 - `service_role` 키는 클라이언트 코드에 절대 노출 금지 (현재 `anon` 키 사용 중 — 정상)
 - 동일 이메일로 이메일/소셜 로그인 혼용 시 Supabase가 자동 병합하지 않음
   → 필요 시 대시보드 **Authentication → Settings → "Link accounts"** 활성화 고려
-- 배포 환경이 추가되면 Supabase Redirect URLs에 운영 도메인도 등록 필요
+- Client ID / Secret은 URL별로 다르지 않음 — OAuth 앱 하나당 하나의 자격증명, 여러 URL은 Redirect URLs에 추가 등록으로 처리
+- 배포 URL 변경 시 Google Authorized JavaScript origins, Supabase Redirect URLs 두 곳만 업데이트하면 됨
