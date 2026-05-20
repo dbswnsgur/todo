@@ -329,3 +329,11 @@ document.getElementById('logout-btn').addEventListener('click', (e) => {
   e.preventDefault();
   db.auth.signOut();
 });
+
+document.getElementById('google-btn').addEventListener('click', () => {
+  db.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.href } });
+});
+
+document.getElementById('github-btn').addEventListener('click', () => {
+  db.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: location.href } });
+});
